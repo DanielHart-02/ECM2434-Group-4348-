@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 # Redirect when logged in
 LOGIN_REDIRECT_URL = '/foodle/home'
 
+# Redirect from login required page if not logged in 
+LOGIN_URL = '/login'
+
 # Application definition
 
 INSTALLED_APPS = [

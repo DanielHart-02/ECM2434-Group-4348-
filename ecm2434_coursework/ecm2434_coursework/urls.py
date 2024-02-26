@@ -27,7 +27,8 @@ urlpatterns = [
     
     path('login/', auth.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='users/logout.html', next_page=None), name='logout'),
-    
+    path('join_group/<str:group_name>', user.join_group, name='join_group'),
+
     path('', redirect_home),
     path("foodle/", include("foodle.urls"), name='foodle')
 ]
