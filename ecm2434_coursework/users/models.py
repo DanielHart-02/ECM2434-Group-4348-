@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):  
     user = models.OneToOneField(User, on_delete = models.CASCADE)  
     foodle_score = models.IntegerField(default=0)
+    env_score = models.IntegerField(default=0)
 
     def __str__(self):  
           return "%s's profile: Score %d" % (self.user, self.foodle_score)

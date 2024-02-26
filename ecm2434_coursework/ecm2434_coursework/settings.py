@@ -36,7 +36,6 @@ LOGIN_URL = '/login'
 # Application definition
 
 INSTALLED_APPS = [
-    'foodle.apps.FoodleConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'users.apps.UsersConfig'
+    'foodle.apps.FoodleConfig',
+    'users.apps.UsersConfig',
+    'recipes.apps.RecipesConfig',
 ]
 
 MIDDLEWARE = [
