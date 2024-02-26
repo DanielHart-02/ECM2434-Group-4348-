@@ -1,9 +1,7 @@
 from django.contrib import admin
 
-from .models import Group
-from .models import User
 from .models import Recipe
+from users.models import UserProfile
 
-admin.site.register(Group)
-admin.site.register(User)
 admin.site.register(Recipe)
+admin.site.register(UserProfile)
