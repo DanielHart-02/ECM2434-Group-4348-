@@ -1,15 +1,12 @@
-{% if user.is_authenticated %}
-<div class="alert alert-success" role="alert">
-    <h3>Welcome to the Foodle {{ user.username }}!</h3>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">logout</button>
-    </form>
-</div>
-{% else %}
-<div class="alert alert-success" role="alert">
-    <h3>Welcome!</h3>
-    <a href="{% url 'register' %}">Signup</a>
-    <a href="{% url 'login' %}">Login</a>
-</div>
-{% endif %}
+{% extends 'foodle/index.html' %}
+
+{% block content %}
+        <div class="alert alert-success" role="alert">
+            <h3>Welcome to the Foodle {{ user.username }}!</h3>
+            <h3>Your current score is {{ user.userprofile.foodle_score }}!</h3>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+        </div>
+{% endblock content %}
