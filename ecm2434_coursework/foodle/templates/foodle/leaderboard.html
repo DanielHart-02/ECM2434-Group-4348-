@@ -1,0 +1,20 @@
+{% extends 'foodle/index.html' %}
+
+{% block content %}
+{% if top_100_profiles %}
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Foodle Score</th>
+    </tr>
+    {% for profile in top_100_profiles %}
+    <tr>
+        <td>{{profile.user.username}}</td>
+        <td>{{profile.foodle_score}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No users currently available</p>
+{% endif %}
+{% endblock content %}

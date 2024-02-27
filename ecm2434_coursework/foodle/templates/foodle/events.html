@@ -1,0 +1,27 @@
+<nav>
+    <div>
+        <div>
+            <a href="{% url 'foodle:home' %}">Back</a>
+            <a href="{% url 'foodle:create_event' %}">Create an Event</a>
+        </div>
+    </div>
+</nav>
+
+{% if cooking_events %}
+<table>
+    <tr>
+        <th>Cook</th>
+        <th>Recipe</th>
+        <th>Date</th>
+    </tr>
+    {% for event in cooking_events %}
+    <tr>
+        <td>{{event.user.username}}</td>
+        <td><a href="{% url 'recipes:view_recipe' event.recipe.recipe_id %}">{{event.recipe.recipe_title}}</a></td>
+        <td>{{event.date_time}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Your group currently has no cooking events</p>
+{% endif %}

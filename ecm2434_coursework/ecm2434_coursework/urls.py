@@ -30,5 +30,6 @@ urlpatterns = [
     path('join_group/<str:group_name>', user.join_group, name='join_group'),
 
     path('', redirect_home),
-    path("foodle/", include("foodle.urls"), name='foodle')
+    path("foodle/", include("foodle.urls"), name='foodle'),
+    path("recipes/", include("recipes.urls"), name='recipes')
 ]

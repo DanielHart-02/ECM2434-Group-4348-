@@ -1,0 +1,17 @@
+<nav>
+    <div>
+        <div>
+            <a href="{% url 'foodle:home' %}">Home</a>
+            <a href="{% url 'foodle:play' %}">Play Foodle</a>
+            <a href="{% url 'foodle:events' %}">Cooking Events</a>
+            <a href="#">Make Recipes</a>
+            <a href="#">View Recipes</a>
+            <a href="{% url 'foodle:leaderboard' %}">Leaderboard</a>
+        </div>
+    </div>
+</nav>
+{% block content %}
+{% endblock content %}
+</body>
+
+</html>
