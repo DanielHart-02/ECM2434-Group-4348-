@@ -37,7 +37,7 @@
 
         div a {
             text-decoration: none;
-            color: #3498db;
+            color: black;
             display: block;
             margin-bottom: 10px;
         }
@@ -56,7 +56,7 @@
                 <a href="{% url 'foodle:play' %}">Play Foodle</a>
                 <a href="{% url 'foodle:events' %}">Cooking Events</a>
                 <a href="{% url 'recipes:create_recipe' %}">Make Recipes</a>
-                <a href="#">View Recipes</a>
+                <a href="{% url 'recipes:view_all_recipes' %}">View Recipes</a>
                 <a href="{% url 'foodle:leaderboard' %}">Leaderboard</a>
             </div>
         </div>
