@@ -20,9 +20,9 @@ def home(request):
 @login_required
 def play(request):
     if request.method == "POST":
-        request.user.userprofile.foodle_score += request.POST['score']
+        request.user.userprofile.foodle_score += int(request.POST['score'])
         request.user.userprofile.save()
-        redirect('foodle:home')
+        return redirect('foodle:home')
     else:
         return render(request, 'foodle/foodle.html')
 

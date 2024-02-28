@@ -16,7 +16,15 @@ var word = wordList[Math.floor(Math.random()*wordList.length)].toUpperCase();
 console.log(word);
 
 window.onload = function(){
+    document.getElementById("submit_score").addEventListener ("click", submitScore);
+    console.log("test1")
     initialize();
+}
+
+function submitScore(){
+    console.log("test")
+    document.getElementById("score_field").setAttribute('value', points);
+    document.getElementById("score_form").submit();
 }
 
 function initialize() {
@@ -103,13 +111,12 @@ function processInput(e) {
     if (!gameOver && row == height) {
         gameOver = true;
         document.getElementById("answer").innerText = word;
-        document.getElementById("answer").style.visibility = "visible";
     }
 }
 
 function update() {
     let guess = "";
-    document.getElementById("answer").style.visibility = "hidden";
+    document.getElementById("answer").innerText = "";
 
     for (let c = 0; c < width; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
@@ -121,18 +128,6 @@ function update() {
 
     if (!guessList.includes(guess)) {
         document.getElementById("answer").innerText = "Not in word list";
-        document.getElementById("answer").style.visibility = "visible";
-        
-        // Adjust points for incorrect attempts
-        if (points > 0) {
-            points -= 1; // Decrease points for each incorrect attempt
-        }
-        if (row == height - 1) {
-            // If all 6 attempts are used, give 0 points
-            points = 0;
-        }
-
-        document.getElementById("points").innerText = "Points: " + points;
 
         // Clear the current row and move to the next row
         clearCurrentRow();
@@ -172,17 +167,12 @@ function update() {
 
             // Adjust points for correct attempts
             points += (6 - row); // Calculate points based on the number of attempts
-            if (row == height - 1) {
+            if (row === height) {
                 // If all 6 attempts are used, give 0 points
                 points = 0;
             }
 
             document.getElementById("points").innerText = "Points: " + points;
-
-
-            setTimeout(() => {
-                restartGame();
-            }, 2000);
         }
     }
 
@@ -211,15 +201,11 @@ function update() {
     col = 0;
 }
 
-
-
 // Add this function to clear the current row and move to the next row
 function clearCurrentRow() {
     row += 1;
     col = 0;
 }
-
-
 
 function restartGame() {
     row = 0;
@@ -235,7 +221,7 @@ function restartGame() {
         }
     }
 
-    document.getElementById("answer").style.visibility = "hidden";
+    document.getElementById("answer").innerText = "";
     clearKeyboardStyling();
 
     console.log(word);

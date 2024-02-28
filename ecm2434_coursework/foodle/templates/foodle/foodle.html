@@ -20,8 +20,10 @@
   <!-- Add this line for displaying points -->
   <button id = "submit_score">Submit and Return</button>
   <h1 id="answer" style="visibility: hidden;"> FILLER </h1>
+  
   <form id="score_form" style="display: none;" action="" method="POST">
-    <input type="hidden" id="score_field" value="0" required name="score">
+    {% csrf_token %}
+    <input type="hidden" id="score_field" step="0" required name="score">
   </form>
 </body>
 
