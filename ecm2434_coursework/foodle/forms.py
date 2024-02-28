@@ -1,6 +1,7 @@
 from django import forms
 from datetime import datetime
-from recipes.models import Recipe  
+from recipes.models import Recipe
+from .models import Group
 from django.core.exceptions import ValidationError
 
 def not_in_past(date_time):
@@ -14,3 +15,8 @@ class CreateMealEvent(forms.Form):
     
     recipe = forms.ChoiceField(choices = recipe_choices)
     date_time = forms.DateField(validators=[not_in_past])
+
+class createGroupForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = ["number_members", "group_name"]
