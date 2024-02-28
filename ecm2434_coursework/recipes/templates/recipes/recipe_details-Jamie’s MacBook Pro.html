@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.recipe_title }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        nav a:hover {
+            color: #2980b9;
+        }
+
+        h1,
+        p {
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div>
+            <div style="text-align: left;">
+                <a href="{% url 'recipes:view_all_recipes' %}">Back</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>{{ recipe.recipe_title }}</h1>
+    <p>Preparation: {{ recipe.preparation }}</p>
+    <p>Prep Time: {{ recipe.prep_time }}</p>
+    <p>Serves: {{ recipe.serves_num }}</p>
+    <p>User ID: {{ recipe.user_id }}</p>
+    <p>Ingredients: {{ recipe.recipe_ingredients }}</p>
+</body>
+
+</html>
