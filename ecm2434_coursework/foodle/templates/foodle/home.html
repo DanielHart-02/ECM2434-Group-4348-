@@ -1,76 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'foodle/index.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Foodle</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .alert {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 20px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        h3 {
-            margin: 10px 0;
-            color: #333;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        button {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        {% block content %}
+{% block content %}
         <div class="alert alert-success" role="alert">
-            <h3>Welcome to Foodle {{ user.username }}!</h3>
+            <h3>Welcome to the Foodle {{ user.username }}!</h3>
             <h3>Your current score is {{ user.userprofile.foodle_score }}!</h3>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button type="submit">logout</button>
             </form>
         </div>
-        {% endblock %}
-    </div>
+{% endblock content %}
 
-</body>
 
-</html>
