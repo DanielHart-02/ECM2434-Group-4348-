@@ -1,7 +1,7 @@
 from django import forms
 from datetime import datetime
 from recipes.models import Recipe
-from .models import Group
+from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
 

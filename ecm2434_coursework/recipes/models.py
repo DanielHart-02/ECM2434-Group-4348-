@@ -14,7 +14,7 @@ class Recipe(models.Model):
     preparation = models.TextField()
     prep_time = models.PositiveIntegerField(default=0)
     serves_num = models.PositiveIntegerField(default=1)
-    co2_per_portion = models.PositiveIntegerField(default=0)
+    sulphates_per_portion = models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return self.recipe_title
