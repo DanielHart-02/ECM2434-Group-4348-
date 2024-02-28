@@ -17,12 +17,10 @@ console.log(word);
 
 window.onload = function(){
     document.getElementById("submit_score").addEventListener ("click", submitScore);
-    console.log("test1")
     initialize();
 }
 
 function submitScore(){
-    console.log("test")
     document.getElementById("score_field").setAttribute('value', points);
     document.getElementById("score_form").submit();
 }

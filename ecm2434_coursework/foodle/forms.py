@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from recipes.models import Recipes    
+from recipes.models import Recipe  
 from django.core.exceptions import ValidationError
 
 def not_in_past(date_time):
@@ -9,7 +9,7 @@ def not_in_past(date_time):
 
 class CreateMealEvent(forms.Form):
     recipe_choices = []
-    for recipe in Recipes.objects.all():
+    for recipe in Recipe.objects.all():
         recipe_choices.append((recipe.recipe_id, recipe.recipe_title))
     
     recipe = forms.ChoiceField(choices = recipe_choices)

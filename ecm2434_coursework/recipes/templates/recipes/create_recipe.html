@@ -1,0 +1,108 @@
+{% extends 'recipes\base.html' %}
+
+{% block content %}
+<form method="POST" novalidate>
+    {% csrf_token %}
+    {{ form.ingredients}}
+    {{ form.quantities}}
+    <div class="col">
+        {{ form.recipe_title.label}} {{ form.recipe_title}}
+    </div>
+    <br>
+    <div class="col">
+        {{ form.prep_time.label}} {{ form.prep_time}}
+    </div>
+    <br>
+    <div class="col">
+        {{ form.serves_num.label}} {{ form.serves_num}}
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <select class="form-select" id="Ingredient-Selector">
+                <option selected>Other</option>
+
+                {% if ingredient_ratings %}
+                {% for rating in ingredient_ratings %}
+                <option value={{rating.ingredient}}>{{rating.ingredient}}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="col">
+            <input id="Other-Ingredient-Input" type="text" class="form-control" placeholder="Other Ingredient"
+                aria-label="Other Ingredient">
+        </div>
+        <div class="col">
+            <input id="Ingredient_Amount" type="text" class="form-control" placeholder="Quantity (g)"
+                aria-label="Quantity (g)">
+        </div>
+        <div class="col">
+            <div id="button-add" style="border: solid;">Add Ingredient</div>
+        </div>
+    </div>
+    <br>
+    <div class="col">
+        {{ form.preparation.label}} {{ form.preparation }}
+    </div>
+    <br>
+
+    <div id="Ingredient-container">
+    </div>
+
+    <button type="submit" class="btn btn-success">Upload Recipe</button>
+</form>
+
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("button-add").addEventListener("click", add_ingredient);
+    }
+
+    function add_ingredient() {
+        const IngredientSelector = document.getElementById("Ingredient-Selector");
+        const IngredientAmount = document.getElementById("Ingredient_Amount");
+
+        // check quantity is positive int
+        if (!checkString(IngredientAmount.value)) {
+            return;
+        } else {
+            const newIngredient = document.createElement("div");
+
+            if (IngredientSelector.options[IngredientSelector.selectedIndex].innerHTML == "Other") {
+                if (!document.getElementById("Other-Ingredient-Input").value) {
+                    return;
+                }
+                newIngredient.innerText = document.getElementById("Other-Ingredient-Input").value + ' ' + "(" + IngredientAmount.value + "g)";
+                
+                if (document.getElementById('id_ingredients').value != '') {
+                    document.getElementById('id_ingredients').value += ',';
+                }
+                document.getElementById('id_ingredients').value += document.getElementById("Other-Ingredient-Input").value
+
+            } else {
+                console.log("test2")
+                newIngredient.innerText = IngredientSelector.options[IngredientSelector.selectedIndex].innerHTML + ' ' + "(" + IngredientAmount.value + "g)";
+                
+                if (document.getElementById('id_ingredients').value != '') {
+                    document.getElementById('id_ingredients').value += ',';
+                }
+                document.getElementById('id_ingredients').value += IngredientSelector.options[IngredientSelector.selectedIndex].innerHTML;
+
+            }
+
+            if ( document.getElementById('id_quantities').value != '') {
+                    document.getElementById('id_quantities').value += ',';
+                }
+            document.getElementById('id_quantities').value += IngredientAmount.value;
+
+            document.getElementById("Ingredient-container").appendChild(newIngredient);
+        }
+    }
+
+
+    function checkString(string) {
+        return /^[0-9]*$/.test(string);
+    }
+
+</script>
+{% endblock %}
