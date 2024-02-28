@@ -1,95 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Event</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        nav {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 0;
-        }
-
-        nav div {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        button {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head>
-
-<body>
-
-    <nav>
+<nav>
+    <div>
         <div>
-            <div>
-                <a href="{% url 'foodle:events' %}">Back</a>
-                <a href="{% url 'foodle:home' %}">Home</a>
-            </div>
+            <a href="{% url 'foodle:events' %}">Back</a>
+            <a href="{% url 'foodle:home' %}">Home</a>
         </div>
-    </nav>
-
-    <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {% for field in form %}
-                <p>{{ field.label }}: <br> {{ field }}</p>
-            {% endfor %}
-            <button type="submit">Create Event</button>
-        </form>
     </div>
+</nav>
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <p>{{ field.label }}: <br> {{ field }}</p>
+    {% endfor %}
+    <button type="submit">Create Event</button>
+</form>
 
-</body>
-
-</html>
