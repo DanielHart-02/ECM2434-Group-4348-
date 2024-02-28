@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import user_passes_test
 
-<<<<<<< HEAD
-from users.models import UserProfile
-=======
->>>>>>> 7944c4204305c9cd31dc74539d9a59c5c3f3a490
 from .models import MealEvent
 from recipes.models import Recipe
 from users.models import UserProfile
@@ -58,17 +54,8 @@ def create_event(request):
         if form.is_valid():
             event_recipe = Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe"))
             event_group = request.user.groups.first()
-<<<<<<< HEAD
-            event_score = max(
-                0,
-                round(
-                    (10 - event_recipe.co2_per_portion / 10)
-                    * User.objects.filter(groups=event_group).count()
-                ),
-            )
-=======
+
             event_score = max(0,  round((10 - event_recipe.sulphates_per_portion/10) * User.objects.filter(groups=event_group).count()))
->>>>>>> 7944c4204305c9cd31dc74539d9a59c5c3f3a490
             new_event = MealEvent(
                 user=request.user,
                 group=event_group,
@@ -93,10 +80,6 @@ def leaderboard(request):
     context = {"top_100_profiles": profiles[:100]}
     return render(request, "foodle/leaderboard.html", context)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7944c4204305c9cd31dc74539d9a59c5c3f3a490
 @user_passes_test(lambda user: user.is_superuser)
 def createGroup(request):
     all_groups = Group.objects.all()

@@ -23,19 +23,11 @@
 <table>
     <tr>
       <th>Group Name</th>
-<<<<<<< HEAD
-      <!--<th>Number of Members</th> -->
-    </tr>
-    {% for item in all %}
-        <tr>
-            <th>{{ item.name }}</th>
-            <!-- <th>{{ item.number_members }}</th> -->
-=======
+
     </tr>
     {% for item in all %}
         <tr>
             <th>{{ item.name}}</th>
->>>>>>> 7944c4204305c9cd31dc74539d9a59c5c3f3a490
         </tr>
     {% endfor %}
 <form method="POST" action = "{% url 'foodle:createGroup' %}">
