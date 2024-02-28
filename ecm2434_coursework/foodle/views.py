@@ -1,11 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from users.models import UserProfile
+from django.contrib.auth.decorators import user_passes_test
+
+from .models import UserProfile
 from .models import MealEvent
-from recipes.models import Recipe
+from .models import Recipe
+from .models import Group
 from .forms import CreateMealEvent
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, user_passes_test
+from .qr import genQrCode
+from PIL import Image
+import io
+
+from .forms import createGroupForm
+from django.contrib.auth.decorators import login_required
 
 def user_in_group(user):
     return (user.is_authenticated and user.groups.count() == 1)
@@ -67,6 +74,43 @@ def leaderboard(request):
     profiles.sort(reverse=True, key=lambda profile: profile.foodle_score + profile.env_score)
     context = {"top_100_profiles": profiles[:100]}
     return render(request, "foodle/leaderboard.html", context)
+
+@login_required
+def recipe_details(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    return render(request, "foodle/recipe_details.html", {"recipe": recipe})
+
+
+@login_required
+def all_recipies(request):
+    recipes = Recipe.objects.all()
+    return render(request, "foodle/all_recipies.html", {"recipes": recipes})
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def createGroup(request):
+    all_groups = Group.objects.all
+    if request.method == "POST":
+        form = createGroupForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+        return render(request, "foodle/createGroup.html", {"all": all_groups})
+    else:
+        return render(request, "foodle/createGroup.html", {"all": all_groups})
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def generateQrCode(request):
+    all_groups = Group.objects.all
+    if request.method == "POST":
+        newQr = Image.new("RGB", (240, 240), color=(0, 0, 0))
+        newQr = genQrCode(request.POST["group_name"])
+
+        buff = io.BytesIO()
+        newQr.save(buff, "jpeg")
+        return HttpResponse(buff.getvalue(), content_type="image/jpeg")
+    else:
+        return render(request, "foodle/generateQrCode.html", {"all": all_groups})
 
 def no_group(request):
     return HttpResponse("You must be part of a group to access this page")
