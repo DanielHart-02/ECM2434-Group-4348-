@@ -46,7 +46,7 @@ def create_event(request):
         if form.is_valid():
             event_recipe = Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe"))
             event_group = request.user.groups.first()
-            event_score = max(0, (10 - event_recipe.co2_per_portion/10) * User.objects.filter(groups=event_group).count())
+            event_score = max(0,  round((10 - event_recipe.co2_per_portion/10) * User.objects.filter(groups=event_group).count()))
             new_event = MealEvent(
                 user=request.user,
                 group= event_group,
