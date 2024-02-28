@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Home</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Recipes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Preparation</th>
+                <th>Prep Time (mins)</th>
+                <th>Serves</th>
+                <th>User ID</th>
+                <th>Ingredients</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipes %}
+                <tr>
+                    <td><a href="{% url 'foodle:recipe_detail' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
+                    <td>{{ recipe.preparation }}</td>
+                    <td>{{ recipe.prep_time }}</td>
+                    <td>{{ recipe.serves_num }}</td>
+                    <td>{{ recipe.user_id }}</td>
+                    <td>{{ recipe.recipe_ingredients }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
