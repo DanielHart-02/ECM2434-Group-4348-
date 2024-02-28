@@ -4,6 +4,7 @@ from users.models import UserProfile
 from .models import MealEvent
 from recipes.models import Recipe
 from .forms import CreateMealEvent
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 def user_in_group(user):
@@ -43,11 +44,15 @@ def create_event(request):
     if request.method == "POST":
         form = CreateMealEvent(request.POST)
         if form.is_valid():
+            event_recipe = Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe"))
+            event_group = request.user.groups.first()
+            event_score = max(0, (10 - event_recipe.co2_per_portion/10) * User.objects.filter(groups=event_group).count())
             new_event = MealEvent(
                 user=request.user,
-                group=request.user.groups.first(),
+                group= event_group,
                 date_time=form.cleaned_data.get("date_time"),
-                recipe= Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe")),
+                recipe= event_recipe,
+                score=event_score
             )
             new_event.save()
             return redirect('foodle:events')
@@ -58,8 +63,9 @@ def create_event(request):
 
 @login_required
 def leaderboard(request):
-    top_100_profiles = UserProfile.objects.order_by("foodle_score")[:100]
-    context = {"top_100_profiles": top_100_profiles}
+    profiles = list(UserProfile.objects.all())
+    profiles.sort(reverse=True, key=lambda profile: profile.foodle_score + profile.env_score)
+    context = {"top_100_profiles": profiles[:100]}
     return render(request, "foodle/leaderboard.html", context)
 
 def no_group(request):
