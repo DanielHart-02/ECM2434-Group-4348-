@@ -9,13 +9,13 @@ from .forms import RecipeForm
 @login_required
 def view_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    return render(request, "foodle/recipe_details.html", {"recipe": recipe})
+    return render(request, "recipes/recipe_details.html", {"recipe": recipe})
 
 
 @login_required
 def view_all_recipes(request):
     recipes = Recipe.objects.all()
-    return render(request, "foodle/all_recipies.html", {"recipes": recipes})
+    return render(request, "recipes/all_recipes.html", {"recipes": recipes})
 
 def create_recipe(request):
     ingredient_ratings = IngredientRating.objects.all()

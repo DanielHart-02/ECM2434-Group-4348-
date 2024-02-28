@@ -20,6 +20,13 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div>
+            <div style="text-align: left;">
+                <a href="{% url 'foodle:home' %}">Back</a>
+            </div>
+        </div>
+    </nav>
     <h1>All Recipes</h1>
     <table>
         <thead>
@@ -35,7 +42,7 @@
         <tbody>
             {% for recipe in recipes %}
                 <tr>
-                    <td><a href="{% url 'foodle:recipe_detail' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
+                    <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
                     <td>{{ recipe.preparation }}</td>
                     <td>{{ recipe.prep_time }}</td>
                     <td>{{ recipe.serves_num }}</td>
