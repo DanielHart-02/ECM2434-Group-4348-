@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import user_passes_test
 
-from .models import UserProfile
 from .models import MealEvent
-from .models import Recipe
-from .models import Group
-from .models import User
+from recipes.models import Recipe
+from users.models import UserProfile
+from django.contrib.auth.models import User, Group
 from .forms import CreateMealEvent
 from .qr import genQrCode
 from PIL import Image
@@ -54,7 +53,7 @@ def create_event(request):
         if form.is_valid():
             event_recipe = Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe"))
             event_group = request.user.groups.first()
-            event_score = max(0,  round((10 - event_recipe.co2_per_portion/10) * User.objects.filter(groups=event_group).count()))
+            event_score = max(0,  round((10 - event_recipe.sulphates_per_portion/10) * User.objects.filter(groups=event_group).count()))
             new_event = MealEvent(
                 user=request.user,
                 group= event_group,
@@ -76,21 +75,9 @@ def leaderboard(request):
     context = {"top_100_profiles": profiles[:100]}
     return render(request, "foodle/leaderboard.html", context)
 
-@login_required
-def recipe_details(request, recipe_id):
-    recipe = get_object_or_404(Recipe, pk=recipe_id)
-    return render(request, "foodle/recipe_details.html", {"recipe": recipe})
-
-
-@login_required
-def all_recipies(request):
-    recipes = Recipe.objects.all()
-    return render(request, "foodle/all_recipies.html", {"recipes": recipes})
-
-
 @user_passes_test(lambda user: user.is_superuser)
 def createGroup(request):
-    all_groups = Group.objects.all
+    all_groups = Group.objects.all()
     if request.method == "POST":
         form = createGroupForm(request.POST or None)
         if form.is_valid():
@@ -102,7 +89,7 @@ def createGroup(request):
 
 @user_passes_test(lambda user: user.is_superuser)
 def generateQrCode(request):
-    all_groups = Group.objects.all
+    all_groups = Group.objects.all()
     if request.method == "POST":
         newQr = Image.new("RGB", (240, 240), color=(0, 0, 0))
         newQr = genQrCode(request.POST["group_name"])

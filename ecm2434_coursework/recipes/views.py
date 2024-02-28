@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.generic import CreateView
@@ -7,11 +7,15 @@ from .forms import RecipeForm
 
 
 @login_required
-def view_all_recipes(request):
-    return HttpResponse("To be built")
-
 def view_recipe(request, recipe_id):
-    return HttpResponse("Viewing recipe %d" % recipe_id)
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    return render(request, "foodle/recipe_details.html", {"recipe": recipe})
+
+
+@login_required
+def view_all_recipes(request):
+    recipes = Recipe.objects.all()
+    return render(request, "foodle/all_recipies.html", {"recipes": recipes})
 
 def create_recipe(request):
     ingredient_ratings = IngredientRating.objects.all()
@@ -22,7 +26,7 @@ def create_recipe(request):
             ingredients = form.cleaned_data.get("ingredients")
             quantities = [int(quantity) for quantity in form.cleaned_data.get("quantities")]
             serves = form.cleaned_data.get("serves_num")
-            co2_score = get_score(ingredients, quantities, serves)
+            sulphates_score = get_score(ingredients, quantities, serves)
             
             formatted_ingredients = ''
 
@@ -38,7 +42,7 @@ def create_recipe(request):
                 preparation = form.cleaned_data.get("preparation"),
                 prep_time = form.cleaned_data.get("prep_time"),
                 serves_num = serves,
-                co2_per_portion = co2_score
+                sulphates_per_portion = sulphates_score
             )
             new_recipe.save()
             return redirect('recipes:view_all_recipes')
