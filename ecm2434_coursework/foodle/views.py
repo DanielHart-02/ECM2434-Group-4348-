@@ -6,6 +6,7 @@ from .models import UserProfile
 from .models import MealEvent
 from .models import Recipe
 from .models import Group
+from .models import User
 from .forms import CreateMealEvent
 from .qr import genQrCode
 from PIL import Image
