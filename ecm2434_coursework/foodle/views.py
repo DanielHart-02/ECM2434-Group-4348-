@@ -19,7 +19,12 @@ def home(request):
 
 @login_required
 def play(request):
-    return HttpResponse("This is the Foodle game page")
+    if request.method == "POST":
+        request.user.userprofile.foodle_score += request.POST['score']
+        request.user.userprofile.save()
+        redirect('foodle:home')
+    else:
+        return render(request, 'foodle/foodle.html')
 
 
 @login_required

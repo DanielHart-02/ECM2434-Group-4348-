@@ -11,7 +11,7 @@ class Recipes(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     recipe_title = models.CharField(max_length=200)
     recipe_ingredients = models.CharField(max_length=200)
-    preparation = models.CharField(max_length=200)
+    preparation = models.TextField()
     prep_time = models.IntegerField(default=0)
     serves_num = models.IntegerField(default=1)
     def __str__(self):
