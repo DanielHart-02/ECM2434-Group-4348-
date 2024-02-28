@@ -5,12 +5,12 @@
 <table>
     <tr>
         <th>Username</th>
-        <th>Foodle Score</th>
+        <th>Score</th>
     </tr>
     {% for profile in top_100_profiles %}
     <tr>
         <td>{{profile.user.username}}</td>
-        <td>{{profile.foodle_score}}</td>
+        <td>{{profile.foodle_score|add:profile.env_score}}</td>
     </tr>
     {% endfor %}
 </table>

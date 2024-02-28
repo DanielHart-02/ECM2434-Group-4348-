@@ -19,6 +19,7 @@
         <td>{{event.user.username}}</td>
         <td><a href="{% url 'recipes:view_recipe' event.recipe.recipe_id %}">{{event.recipe.recipe_title}}</a></td>
         <td>{{event.date_time}}</td>
+        <td>{{event.score}}</td>
     </tr>
     {% endfor %}
 </table>
