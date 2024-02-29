@@ -1,57 +1,117 @@
-{% extends 'recipes\base.html' %}
+{% extends 'recipes/base.html' %}
 
 {% block content %}
-<form method="POST" novalidate>
-    {% csrf_token %}
-    {{ form.ingredients}}
-    {{ form.quantities}}
-    <div class="col">
-        {{ form.recipe_title.label}} {{ form.recipe_title}}
-    </div>
-    <br>
-    <div class="col">
-        {{ form.prep_time.label}} {{ form.prep_time}}
-    </div>
-    <br>
-    <div class="col">
-        {{ form.serves_num.label}} {{ form.serves_num}}
-    </div>
-    <br>
-    <div class="row">
-        <div class="col">
-            <select class="form-select" id="Ingredient-Selector">
-                <option selected>Other</option>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-                {% if ingredient_ratings %}
-                {% for rating in ingredient_ratings %}
-                <option value={{rating.ingredient}}>{{rating.ingredient}}</option>
-                {% endfor %}
-                {% endif %}
-            </select>
-        </div>
-        <div class="col">
-            <input id="Other-Ingredient-Input" type="text" class="form-control" placeholder="Other Ingredient"
-                aria-label="Other Ingredient">
-        </div>
-        <div class="col">
-            <input id="Ingredient_Amount" type="text" class="form-control" placeholder="Quantity (g)"
-                aria-label="Quantity (g)">
-        </div>
-        <div class="col">
-            <div id="button-add" style="border: solid;">Add Ingredient</div>
-        </div>
-    </div>
-    <br>
-    <div class="col">
-        {{ form.preparation.label}} {{ form.preparation }}
-    </div>
-    <br>
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    <div id="Ingredient-container">
-    </div>
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-    <button type="submit" class="btn btn-success">Upload Recipe</button>
-</form>
+    .form-select,
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    #button-add {
+        border: 1px solid #28a745;
+        color: #28a745;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #button-add:hover {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    hr {
+        margin-top: 0;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<div class="container">
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.ingredients }}
+        {{ form.quantities }}
+        <div class="form-group">
+            {{ form.recipe_title.label }} {{ form.recipe_title }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.prep_time.label }} {{ form.prep_time }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.serves_num.label }} {{ form.serves_num }}
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <select class="form-select" id="Ingredient-Selector">
+                    <option selected>Other</option>
+
+                    {% if ingredient_ratings %}
+                        {% for rating in ingredient_ratings %}
+                            <option value="{{ rating.ingredient }}">{{ rating.ingredient }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <input id="Other-Ingredient-Input" type="text" class="form-control" placeholder="Other Ingredient"
+                    aria-label="Other Ingredient">
+            </div>
+            <div class="form-group col-md-3">
+                <input id="Ingredient_Amount" type="text" class="form-control" placeholder="Quantity (g)"
+                    aria-label="Quantity (g)">
+            </div>
+            <div class="form-group col-md-3">
+                <div id="button-add" class="btn btn-outline-success">Add Ingredient</div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.preparation.label }} {{ form.preparation }}
+        </div>
+        <br>
+
+        <div id="Ingredient-container">
+        </div>
+
+        <button type="submit" class="btn btn-success">Upload Recipe</button>
+    </form>
+</div>
 
 <script type="text/javascript">
     window.onload = function () {
@@ -62,7 +122,7 @@
         const IngredientSelector = document.getElementById("Ingredient-Selector");
         const IngredientAmount = document.getElementById("Ingredient_Amount");
 
-        // check quantity is positive int
+        // check quantity is a positive integer
         if (!checkString(IngredientAmount.value)) {
             return;
         } else {
@@ -73,36 +133,32 @@
                     return;
                 }
                 newIngredient.innerText = document.getElementById("Other-Ingredient-Input").value + ' ' + "(" + IngredientAmount.value + "g)";
-                
+
                 if (document.getElementById('id_ingredients').value != '') {
                     document.getElementById('id_ingredients').value += ',';
                 }
-                document.getElementById('id_ingredients').value += document.getElementById("Other-Ingredient-Input").value
+                document.getElementById('id_ingredients').value += document.getElementById("Other-Ingredient-Input").value;
 
             } else {
-                console.log("test2")
                 newIngredient.innerText = IngredientSelector.options[IngredientSelector.selectedIndex].innerHTML + ' ' + "(" + IngredientAmount.value + "g)";
-                
+
                 if (document.getElementById('id_ingredients').value != '') {
                     document.getElementById('id_ingredients').value += ',';
                 }
                 document.getElementById('id_ingredients').value += IngredientSelector.options[IngredientSelector.selectedIndex].innerHTML;
-
             }
 
-            if ( document.getElementById('id_quantities').value != '') {
-                    document.getElementById('id_quantities').value += ',';
-                }
+            if (document.getElementById('id_quantities').value != '') {
+                document.getElementById('id_quantities').value += ',';
+            }
             document.getElementById('id_quantities').value += IngredientAmount.value;
 
             document.getElementById("Ingredient-container").appendChild(newIngredient);
         }
     }
 
-
     function checkString(string) {
         return /^[0-9]*$/.test(string);
     }
-
 </script>
 {% endblock %}
