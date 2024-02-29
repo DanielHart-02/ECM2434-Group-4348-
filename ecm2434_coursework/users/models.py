@@ -10,8 +10,11 @@ class UserProfile(models.Model):
 
     def get_env_score(self):
         score = 0
-        for event in MealEvent.objects.filter(group = self.user.groups.first()):
-            score += event.score
+        if (self.user.groups.count() == 0 ):
+            return 0
+        else:
+            for event in MealEvent.objects.filter(group = self.user.groups.first()):
+                score += event.score
         return score
     
     env_score = property(get_env_score)

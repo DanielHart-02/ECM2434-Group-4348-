@@ -10,7 +10,7 @@ class Recipe(models.Model):
     recipe_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     recipe_title = models.CharField(max_length=200)
-    recipe_ingredients = models.CharField(max_length=200)
+    recipe_ingredients = models.TextField()
     preparation = models.TextField()
     prep_time = models.PositiveIntegerField(default=0)
     serves_num = models.PositiveIntegerField(default=1)

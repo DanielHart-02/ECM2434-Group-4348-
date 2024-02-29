@@ -32,22 +32,20 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Preparation</th>
                 <th>Prep Time (mins)</th>
                 <th>Serves</th>
                 <th>User ID</th>
-                <th>Ingredients</th>
+                <th>Sulphates/Portion</th>
             </tr>
         </thead>
         <tbody>
             {% for recipe in recipes %}
                 <tr>
                     <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
-                    <td>{{ recipe.preparation }}</td>
                     <td>{{ recipe.prep_time }}</td>
                     <td>{{ recipe.serves_num }}</td>
                     <td>{{ recipe.user_id }}</td>
-                    <td>{{ recipe.recipe_ingredients }}</td>
+                    <td>{{ recipe.sulphates_per_portion }}</td>
                 </tr>
             {% endfor %}
         </tbody>
