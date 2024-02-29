@@ -37,14 +37,16 @@ We have also include the versioned source code for archiving.
 
 [./technical-documents/](./technical-documents/)
 
-Technical documents are broken down into front end and back end etc.  
+In addition to this, we have included a short text file with instructions on how to run our web app:
+
+[./technical-documents/README.md](./technical-documents/README.md)
 
 ## PRODUCT DOCUMENTS
-Our product documents are primarily in the form of our product design. Below the design documents for the client have been archived:
+Our product documents are primarily in the form of our product design. We have also included our initial and final webpage connectivity and database designs. Below the design documents for the client and our database and webpage models have been archived:
 
 [./product-documents/design/](./product-documents/design/)
 
-We have also have included a UI document that runs through how a user could use our app. Also archived below:
+We have also have included a UI document that runs through how a user could use our app, and the functionality and future ambitions for each page. In the same directory is a folder with screenshots of every page in action. Both are archived below:
 
 [./product-documents/UI/](./product-documents/UI/)
 
