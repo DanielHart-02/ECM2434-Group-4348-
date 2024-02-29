@@ -15,7 +15,7 @@ The group members are:
 This is a submission for Sprint 1. There are three types of document that you will find the following places.
 
 ## PROCESS DOCUMENTS
-Our process documents are managed in the trello platform. The link to our project page is below. We (specific username that added) have added mattcollison2 to the board so it is visible.
+Our process documents are managed in the trello platform. The link to our project page is below. We have added @solomonoyelere1 to the board so it is visible.
 
 trello link: [https://trello.com/b/GZK2BLGd/ecm2434-project-group-4348]
 
@@ -47,3 +47,7 @@ Our product documents are primarily in the form of our product design. Below the
 We have also have included a UI document that runs through how a user could use our app. Also archived below:
 
 [./product-documents/UI/](./product-documents/UI/)
+
+In addition to this we have also created a requirement analysis document for our application which we have stored in the directory below:
+
+[./product-documents/requirement-analysis/](./product-documents/requirement-analysis/)
