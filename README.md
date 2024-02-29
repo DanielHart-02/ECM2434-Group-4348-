@@ -1,4 +1,4 @@
-# Welcome to the Exeter Orienteering Project
+# Welcome to Group Software Development Project - ECM2434
 
 ### Group 4348
 ___
