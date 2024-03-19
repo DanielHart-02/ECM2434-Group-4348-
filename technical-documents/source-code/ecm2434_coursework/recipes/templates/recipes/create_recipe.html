@@ -1,6 +1,8 @@
 {% extends 'recipes/base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/general.css' %}">
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -15,6 +17,7 @@
         margin: 20px auto;
         background-color: #ffffff;
         padding: 20px;
+        opacity: 0.95;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
@@ -57,6 +60,7 @@
         margin-top: 0;
         border: 1px solid #ddd;
     }
+
 </style>
 
 <div class="container">
@@ -97,7 +101,7 @@
                     aria-label="Quantity (g)">
             </div>
             <div class="form-group col-md-3">
-                <div id="button-add" class="btn btn-outline-success">Add Ingredient</div>
+                <div id="button-add" class="btn btn-outline-success" style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Add Ingredient</div>
             </div>
         </div>
         <br>
@@ -109,7 +113,7 @@
         <div id="Ingredient-container">
         </div>
 
-        <button type="submit" class="btn btn-success">Upload Recipe</button>
+        <button type="submit" class="btn btn-success" style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Upload Recipe</button>
     </form>
 </div>
 

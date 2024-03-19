@@ -3,12 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/general.css' %}">
     <title>Recipe Home</title>
     <style>
         table {
             width: 100%;
             border-collapse: collapse;
         }
+        nav {
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        nav a:hover {
+            color: #2980b9;
+        }
+
         th, td {
             padding: 8px;
             text-align: left;
@@ -17,17 +34,26 @@
         th {
             background-color: #f2f2f2;
         }
+            tr:nth-child(odd) {
+            background-color: #ffffff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #949292;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <nav>
         <div>
-            <div style="text-align: left;">
+            <div>
                 <a href="{% url 'foodle:home' %}">Back</a>
             </div>
         </div>
     </nav>
-    <h1>All Recipes</h1>
+    <h1 style="text-align: center; color:#f2f2f2">All Recipes</h1>
     <table>
         <thead>
             <tr>

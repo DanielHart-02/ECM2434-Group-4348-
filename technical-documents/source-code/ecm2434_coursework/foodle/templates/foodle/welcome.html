@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
-
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/login_styles.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,8 +17,9 @@
         }
 
         .alert {
-            background-color: #4caf50;
-            color: #fff;
+            background-color: #c0fcc2;
+            opacity: 0.9;
+            color: #000000;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
