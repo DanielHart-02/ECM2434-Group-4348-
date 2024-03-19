@@ -56,7 +56,12 @@
     <p>Preparation: {{ recipe.preparation }}</p>
     <p>Prep Time: {{ recipe.prep_time }}</p>
     <p>Serves: {{ recipe.serves_num }}</p>
-    <p>User ID: {{ recipe.user_id }}</p>
+    <p>User:
+        {% if recipe.user == None %}
+        User Deleted
+        {% else %}
+        {{ recipe.user.username }}
+        {% endif %}</p>
     <p>Ingredients: {{ recipe.recipe_ingredients }}</p>
     <p>Sulphates Per Portion: {{ recipe.sulphates_per_portion }}</p>
 </body>

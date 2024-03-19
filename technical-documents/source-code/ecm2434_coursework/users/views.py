@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCreationForm, UserDeletionForm
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.http import HttpResponse
@@ -39,3 +39,20 @@ def join_group(request, group_name):
         return redirect('foodle:home')
     else:
         return render(request,'users/leave_group.html')
+    
+@login_required
+def delete_user(request):
+    if request.method == 'POST':
+        delete_form = UserDeletionForm(request.POST, instance=request.user)
+        user = request.user
+        user.delete()
+        messages.info(request, 'Your account has been deleted.')
+        return redirect('foodle:welcome')
+    else:
+        delete_form = UserDeletionForm(instance=request.user)
+
+    context = {
+        'delete_form': delete_form
+    }
+
+    return render(request, 'users/delete_account.html', context)
