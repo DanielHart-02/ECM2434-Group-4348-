@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/login_styles.css' %}">
+    <title>Login page</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Login</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <p>{{ field.label }}: <br> {{ field }}</p>
+            {% endfor %}
+            <div style="text-align: center;">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <p style="text-align: center;">Don't have an account? </p>
+        <div style="text-align: center; margin-bottom: 5px;"><a href="{% url 'register' %}">Signup here</a></div>
+    </div>
+
+</body>
+
+</html>
