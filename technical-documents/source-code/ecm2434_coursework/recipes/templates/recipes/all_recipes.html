@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             width: 100%;
             border-collapse: collapse;
         }
+
         nav {
             background-color: #fff;
             padding: 10px;
@@ -26,15 +28,18 @@
             color: #2980b9;
         }
 
-        th, td {
+        th,
+        td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
             background-color: #f2f2f2;
         }
-            tr:nth-child(odd) {
+
+        tr:nth-child(odd) {
             background-color: #ffffff;
             font-weight: bold;
         }
@@ -45,6 +50,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div>
@@ -60,21 +66,28 @@
                 <th>Title</th>
                 <th>Prep Time (mins)</th>
                 <th>Serves</th>
-                <th>User ID</th>
+                <th>User</th>
                 <th>Sulphates/Portion</th>
             </tr>
         </thead>
         <tbody>
             {% for recipe in recipes %}
-                <tr>
-                    <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
-                    <td>{{ recipe.prep_time }}</td>
-                    <td>{{ recipe.serves_num }}</td>
-                    <td>{{ recipe.user_id }}</td>
-                    <td>{{ recipe.sulphates_per_portion }}</td>
-                </tr>
+            <tr>
+                <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
+                <td>{{ recipe.prep_time }}</td>
+                <td>{{ recipe.serves_num }}</td>
+                <td>
+                    {% if recipe.user == None %}
+                    User Deleted
+                    {% else %}
+                    {{ recipe.user.username }}
+                    {% endif %}
+                </td>
+                <td>{{ recipe.sulphates_per_portion }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
+
 </html>

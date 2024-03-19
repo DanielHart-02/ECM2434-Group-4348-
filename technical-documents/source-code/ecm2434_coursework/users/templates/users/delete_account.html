@@ -1,0 +1,11 @@
+<form method="POST">
+    {% csrf_token %}
+            <p>Are you sure you want to delete your account?  This will permanently delete your
+               profile and username, but recipes you have created will still exists.</p>
+            {{ form }}
+    <div class="form-group">
+        <button class="btn btn-danger" type="submit">Delete Account</button>
+            <a class="btn btn-primary-custom" style="float:right;" 
+               href="{% url 'foodle:home' %}">Cancel</a>
+    </div>
+</form>

@@ -8,7 +8,7 @@ class IngredientRating(models.Model):
 
 class Recipe(models.Model):
     recipe_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
     recipe_title = models.CharField(max_length=200)
     recipe_ingredients = models.TextField()
     preparation = models.TextField()
