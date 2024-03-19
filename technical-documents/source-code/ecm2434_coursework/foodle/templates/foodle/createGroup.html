@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/general.css' %}">
 <style>
     table {
         margin-top: 10px;
@@ -15,14 +17,27 @@
         padding: 8px;
     }
     
+    tr:nth-child(odd) {
+        background-color: #ffffff;
+        font-weight: bold;
+    }
+
     tr:nth-child(even) {
-        background-color: #dddddd;
+        background-color: #949292;
+        font-weight: bold;
     }
 </style>
-<h1>ALL GROUPS</h1>
+<nav style="position: fixed; top: 0%; width: 100%; text-align: center; color: #ffffff;">
+    <div>
+        <div style="text-align: left;">
+            <a href="{% url 'foodle:generateQrCode' %}">Generate Group Qr Codes</a>
+        </div>
+    </div>
+</nav>
+<h1 style="color: #dddddd; text-align: center; opacity: 1;">CREATE GROUP</h1>
 <table>
     <tr>
-      <th>Group Name</th>
+      <th style="text-align: center;">Group Name</th>
 
     </tr>
     {% for item in all %}
@@ -30,13 +45,17 @@
             <th>{{ item.name}}</th>
         </tr>
     {% endfor %}
+
+<hr>
+
 <form method="POST" action = "{% url 'foodle:createGroup' %}">
     {% csrf_token %}
     <div class="mb-3">
-        <div><label for="name" class="form-label">New Group name</label></div>
         <div>
-            <input type="name" class="name" name="name" aria-describedby="name"></div>
+            <input type="name" class="name" name="name" aria-describedby="name" placeholder="New Group Name" style="width: 100%;">
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Create new Group</button>
+    <button type="submit" class="btn btn-primary" style="margin-left: 50%; -ms-transform: translate(-50%, 0%); transform: translate(-50%, 0%); margin-bottom: 20px;">Create new Group</button>
 </form>
+<hr>
 {% endblock %}

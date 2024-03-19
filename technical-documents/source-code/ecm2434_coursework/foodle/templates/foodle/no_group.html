@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Events</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/general.css' %}">
+</head>
+
+<body>
+    <nav style="background-color: #28a745;">
+        <div>
+            <div>
+                <a href="{% url 'foodle:home' %}" style="color: #ffffff;">Back</a>
+            </div>
+        </div>
+    </nav>
+    <div style="background-color: #fff; text-align: center; margin-top: 10%; border-radius: 10px;">
+        <h1>You must be part of a group to access this page. Please join a group by scanning the QR code in your accomodation kitchen.</h1>
+    </div>
+</body>
+
+</html>

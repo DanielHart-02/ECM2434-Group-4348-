@@ -40,13 +40,14 @@
     <div class="alert" role="alert">
         <h3>Welcome to Foodle {{ user.username }}!</h3>
         <h3>Your current score is {{ user.userprofile.foodle_score|add:user.userprofile.env_score}}!</h3>
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-        <form method="get" action="{% url 'delete_user' %}">
-            {% csrf_token %}
-            <button type="submit">Delete Account</button>
-        </form>
     </div>
+
+    <form method="post" action="{% url 'logout' %}" style="position: fixed; top: 82%; width: 100%;">
+        {% csrf_token %}
+        <button type="submit" style="width: 90%; margin-left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">Logout</button>
+    </form>
+    <form method="get" action="{% url 'delete_user' %}" style="position: fixed; top: 90%; width: 100%;">
+        {% csrf_token %}
+        <button type="submit" style="width: 90%; background-color: #ff0000;  margin-left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">Delete Account</button>
+    </form>
 {% endblock content %}

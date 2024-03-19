@@ -55,7 +55,13 @@ def create_event(request):
             event_recipe = Recipe.objects.get(recipe_id=form.cleaned_data.get("recipe"))
             event_group = request.user.groups.first()
 
-            event_score = max(0,  round((10 - event_recipe.sulphates_per_portion/10) * User.objects.filter(groups=event_group).count()))
+            event_score = max(
+                0,
+                round(
+                    (10 - event_recipe.sulphates_per_portion / 10)
+                    * User.objects.filter(groups=event_group).count()
+                ),
+            )
             new_event = MealEvent(
                 user=request.user,
                 group=event_group,
@@ -79,6 +85,7 @@ def leaderboard(request):
     )
     context = {"top_100_profiles": profiles[:100]}
     return render(request, "foodle/leaderboard.html", context)
+
 
 @user_passes_test(lambda user: user.is_superuser)
 def createGroup(request):
@@ -107,4 +114,4 @@ def generateQrCode(request):
 
 
 def no_group(request):
-    return HttpResponse("You must be part of a group to access this page")
+    return render(request, "foodle/no_group.html")
