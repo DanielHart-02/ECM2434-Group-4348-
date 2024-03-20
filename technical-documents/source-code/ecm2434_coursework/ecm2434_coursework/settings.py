@@ -29,7 +29,8 @@ SECRET_KEY = "django-insecure-h4n7o@+n3tss1r(flk*x&19wi1=b8i6am!#e+f5@y%=d2b!8v9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #for local hosting
+#ALLOWED_HOSTS = [".awsapprunner.com"] #for web hosting
 
 # email settings
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
@@ -38,7 +39,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv("EMAIL_USER"))
-EMAIL_HOST_PASSWORD = "bmbuiwhebrnwkrub"
+EMAIL_HOST_PASSWORD = str(os.getenv("EMAIL_PASSWORD"))
 
 # Redirect when logged in
 LOGIN_REDIRECT_URL = "foodle:home"
@@ -68,6 +69,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "ecm2434_coursework.urls"
@@ -137,6 +140,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
