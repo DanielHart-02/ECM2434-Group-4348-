@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +29,15 @@ SECRET_KEY = "django-insecure-h4n7o@+n3tss1r(flk*x&19wi1=b8i6am!#e+f5@y%=d2b!8v9
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# email settings
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
 
 # Redirect when logged in
 LOGIN_REDIRECT_URL = "foodle:home"
