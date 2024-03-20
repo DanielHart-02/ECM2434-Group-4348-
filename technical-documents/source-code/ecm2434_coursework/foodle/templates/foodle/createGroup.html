@@ -1,14 +1,61 @@
+<!-- Author Victor Smith -->
 {% extends 'base.html' %}
 
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static '/css/general.css' %}">
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        width: 80%; 
+        margin-left: auto; 
+        margin-right: auto; 
+        text-align: center; 
+        opacity: 1; 
+        background-color: #ffffff; 
+        border-radius: 10px;
+    }
+
+    button {
+        width: 80%; 
+        margin-left: 50%; 
+        -ms-transform: translate(-50%, 0%); 
+        transform: translate(-50%, 0%); 
+        margin-bottom: 20px;
+    }
+
+    nav {
+        background-color: #28a745;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-right: 10px;
+    }
+
     table {
         margin-top: 10px;
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 90%; 
+        margin-left: 50%; 
+        -ms-transform: translate(-50%, 0%); 
+        transform: translate(-50%, 0%); 
+        margin-bottom: 20px;
     }
     
     td, th {
@@ -26,15 +73,16 @@
         background-color: #949292;
         font-weight: bold;
     }
+    
 </style>
-<nav style="position: fixed; top: 0%; width: 100%; text-align: center; color: #ffffff;">
+<nav>
     <div>
-        <div style="text-align: left;">
+        <div>
             <a href="{% url 'foodle:generateQrCode' %}">Generate Group Qr Codes</a>
         </div>
     </div>
 </nav>
-<h1 style="color: #dddddd; text-align: center; opacity: 1;">CREATE GROUP</h1>
+<h1>CREATE GROUP</h1>
 <table>
     <tr>
       <th style="text-align: center;">Group Name</th>
@@ -52,10 +100,10 @@
     {% csrf_token %}
     <div class="mb-3">
         <div>
-            <input type="name" class="name" name="name" aria-describedby="name" placeholder="New Group Name" style="width: 100%;">
+            <input type="name" class="name" name="name" aria-describedby="name" placeholder="New Group Name" style="width: 80%; margin-left: 50%; -ms-transform: translate(-50%, 0%); transform: translate(-50%, 0%);">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" style="margin-left: 50%; -ms-transform: translate(-50%, 0%); transform: translate(-50%, 0%); margin-bottom: 20px;">Create new Group</button>
+    <button type="submit" class="btn btn-primary">Create new Group</button>
 </form>
 <hr>
 {% endblock %}
