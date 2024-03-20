@@ -7,11 +7,16 @@ To run the Foodle web app:
    $ source myenv/bin/activate
    $ pip3 install -r requirements.txt
 
-1. Change directory with the command:
+3. Change directory with the command:
    
    $ cd source-code/ecm2434_coursework/
 
-2. Start the web server with the command:
+5. Create a .env file of the format:
+   
+   EMAIL_USER = 'foodle.devteam@gmail.com'
+   EMAIL_PASSWORD = '<Password provided in client docs>'
+
+6. Start the web server with the command:
 
     $ python3 manage.py runserver
 
