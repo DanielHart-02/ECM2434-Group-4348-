@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    terms_confirmed = forms.BooleanField()
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "password1", "password2",'terms_confirmed')
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
