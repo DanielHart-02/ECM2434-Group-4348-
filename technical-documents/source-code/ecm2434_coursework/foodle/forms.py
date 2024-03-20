@@ -17,6 +17,9 @@ class CreateMealEvent(forms.Form):
 
     recipe = forms.ChoiceField(choices=recipe_choices)
     date_time = forms.DateField(validators=[not_in_past])
+    widgets = {
+        "date_time": forms.TextInput(attrs={"type": "datetime-local"}),
+    }
 
 
 class createGroupForm(forms.ModelForm):
