@@ -56,3 +56,6 @@ def delete_user(request):
     }
 
     return render(request, 'users/delete_account.html', context)
+
+def terms(request):
+    return render(request, 'users/terms.html')
