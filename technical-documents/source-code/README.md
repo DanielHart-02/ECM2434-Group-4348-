@@ -4,7 +4,7 @@ To run the Foodle web app:
 2. With pip3 installed, run the commands:
    
    $ python3 -m venv .venv
-   $ source myenv/bin/activate
+   $ source .venv/bin/activate
    $ pip3 install -r requirements.txt
 
 3. Change directory with the command:
