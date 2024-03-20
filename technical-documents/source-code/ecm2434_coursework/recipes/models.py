@@ -5,6 +5,7 @@ class IngredientRating(models.Model):
     ingredient_id = models.AutoField(primary_key=True)
     ingredient = models.CharField(max_length=255, unique=True)
     rating = models.IntegerField()
+    allergen = models.CharField(max_length=20, null=True, default = None, blank=True)
 
 class Recipe(models.Model):
     recipe_id = models.AutoField(primary_key=True)
@@ -15,6 +16,7 @@ class Recipe(models.Model):
     prep_time = models.PositiveIntegerField(default=0)
     serves_num = models.PositiveIntegerField(default=1)
     sulphates_per_portion = models.PositiveIntegerField(default=0)
+    allergens = models.CharField(max_length=50, null=True, default = None, blank=True)
     
     def __str__(self):
         return self.recipe_title

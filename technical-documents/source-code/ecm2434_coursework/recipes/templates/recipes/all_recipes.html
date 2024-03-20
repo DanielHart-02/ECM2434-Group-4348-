@@ -66,6 +66,7 @@
                 <th>Title</th>
                 <th>Prep Time (mins)</th>
                 <th>Serves</th>
+                <th>Allergens</th>
                 <th>User</th>
                 <th>Sulphates/Portion</th>
             </tr>
@@ -76,6 +77,12 @@
                 <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
                 <td>{{ recipe.prep_time }}</td>
                 <td>{{ recipe.serves_num }}</td>
+                <td>{% if recipe.allergens == None %}
+
+                    {% else %}
+                    {{ recipe.allergens }}
+                    {% endif %}
+                </td>
                 <td>
                     {% if recipe.user == None %}
                     User Deleted

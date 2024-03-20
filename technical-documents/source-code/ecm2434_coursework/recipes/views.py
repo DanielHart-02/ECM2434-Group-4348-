@@ -17,6 +17,7 @@ def view_all_recipes(request):
     recipes = Recipe.objects.all()
     return render(request, "recipes/all_recipes.html", {"recipes": recipes})
 
+
 def create_recipe(request):
     ingredient_ratings = IngredientRating.objects.all()
     form = RecipeForm(request.POST or None)
@@ -28,10 +29,11 @@ def create_recipe(request):
                 int(quantity) for quantity in form.cleaned_data.get("quantities")
             ]
             serves = form.cleaned_data.get("serves_num")
-           
+
             sulphates_score = get_score(ingredients, quantities, serves)
-            
-            formatted_ingredients = ''
+
+            formatted_ingredients = ""
+            formatted_allergens = ""
 
             for i in range(len(ingredients)):
                 formatted_ingredients += (
@@ -40,15 +42,28 @@ def create_recipe(request):
                 if i < len(ingredients) - 1:
                     formatted_ingredients += ", "
 
+            for i in range(len(ingredients)):
+                if (
+                    len(IngredientRating.objects.filter(ingredient=ingredients[i])) > 0
+                    and IngredientRating.objects.get(ingredient=ingredients[i]).allergen
+                    != None
+                ):
+                    formatted_allergens += IngredientRating.objects.get(
+                        ingredient=ingredients[i]
+                    ).allergen
+
+                    if i < len(ingredients) - 1:
+                        formatted_allergens += ", "
+
             new_recipe = Recipe(
                 user=request.user,
-
-                recipe_title = form.cleaned_data.get("recipe_title"),
-                recipe_ingredients = formatted_ingredients,
-                preparation = form.cleaned_data.get("preparation"),
-                prep_time = form.cleaned_data.get("prep_time"),
-                serves_num = serves,
-                sulphates_per_portion = sulphates_score
+                recipe_title=form.cleaned_data.get("recipe_title"),
+                recipe_ingredients=formatted_ingredients,
+                preparation=form.cleaned_data.get("preparation"),
+                prep_time=form.cleaned_data.get("prep_time"),
+                serves_num=serves,
+                sulphates_per_portion=sulphates_score,
+                allergens=formatted_allergens,
             )
             new_recipe.save()
             return redirect("recipes:view_all_recipes")
