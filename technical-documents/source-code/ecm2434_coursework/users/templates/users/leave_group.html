@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>leave group</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'myfirst.css' %}">
+    <link rel="stylesheet" href="{% static '/css/general.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,14 +51,14 @@
 
 <body>
 
-    <div class="container">
-        you are already a member of a group
+    <div class="container" style="width: 80%; margin-left: 50%; -ms-transform: translate(-50%, 70%); transform: translate(-50%, 70%);">
+        <h2 style="text-align: center;">you are already a member of a group</h2>
         <form action="#" method="get">
-            <button type="submit" class="btn" value="Click" name="leave_group_btn">
+            <button type="submit" class="btn" value="Click" name="leave_group_btn" style="width: 80%; margin-top: 10px ; margin-left: 50%; -ms-transform: translate(-50%, 0%); transform: translate(-50%, 0%);">
                 Leave your group and join the new one?
             </button>
         </form>
-        <p><a href="{% url 'foodle:home' %}">Home</a></p>
+        <p style="text-align: center;"><a href="{% url 'foodle:home' %}">Home</a></p>
     </div>
 
 </body>

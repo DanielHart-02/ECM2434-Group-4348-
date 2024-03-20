@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="{% static '/css/general.css' %}">
     <title>Recipe Home</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+         
         table {
-            width: 100%;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
             border-collapse: collapse;
         }
 
@@ -64,19 +72,19 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Prep Time (mins)</th>
+                <th>Prep (mins)</th>
                 <th>Serves</th>
                 <th>Allergens</th>
                 <th>User</th>
-                <th>Sulphates/Portion</th>
+                <th>Env. Score</th>
             </tr>
         </thead>
         <tbody>
             {% for recipe in recipes %}
             <tr>
                 <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
-                <td>{{ recipe.prep_time }}</td>
-                <td>{{ recipe.serves_num }}</td>
+                <td style="text-align: center;">{{ recipe.prep_time }}</td>
+                <td style="text-align: center;">{{ recipe.serves_num }}</td>
                 <td>{% if recipe.allergens == None %}
 
                     {% else %}
@@ -90,7 +98,7 @@
                     {{ recipe.user.username }}
                     {% endif %}
                 </td>
-                <td>{{ recipe.sulphates_per_portion }}</td>
+                <td style="text-align: center;">{{ recipe.sulphates_per_portion }}</td>
             </tr>
             {% endfor %}
         </tbody>
