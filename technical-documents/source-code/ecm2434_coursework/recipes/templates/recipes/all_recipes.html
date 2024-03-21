@@ -15,27 +15,33 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        h1 {
+            width: 80%; 
+            margin-left: auto; 
+            margin-right: auto; 
+            text-align: center; 
+            opacity: 1; 
+            background-color: #ffffff; 
+            border-radius: 10px;
+        }
          
         table {
-            width: 90%;
+            width: 80%;
             margin-left: auto;
             margin-right: auto;
             border-collapse: collapse;
         }
 
         nav {
-            background-color: #fff;
+            background-color: #28a745;
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
             text-decoration: none;
-            color: #3498db;
-        }
-
-        nav a:hover {
-            color: #2980b9;
+            color: #ffffff;
         }
 
         th,
@@ -62,15 +68,15 @@
 </head>
 
 <body>
-    <nav style="background-color: #28a745;">
+    <nav>
         <div>
             <div>
-                <a href="{% url 'foodle:home' %}" style="color: #ffffff;">Back</a>
+                <a href="{% url 'foodle:home' %}">Back</a>
             </div>
         </div>
     </nav>
-    <h1 style="text-align: center; color:#f2f2f2">All Recipes</h1>
-    <table style="width: 100%;">
+    <h1>All Recipes</h1>
+    <table>
         <thead>
             <tr>
                 <th>Title</th>

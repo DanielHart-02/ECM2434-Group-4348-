@@ -37,12 +37,12 @@
 </head>
 <nav style="position: fixed; top: 0%; width: 100%; text-align: center; color: #ffffff;">
     <div>
-        <div style="text-align: left;">
+        <div>
             <a href="{% url 'foodle:generateQrCode' %}">Generate Group Qr Codes</a>
         </div>
     </div>
 </nav>
-<h1 style="color: #dddddd; text-align: center; opacity: 1;">CREATE GROUP</h1>
+<h1>CREATE GROUP</h1>
 <table>
     <tr>
         <th style="text-align: center;">Group Name</th>
@@ -64,9 +64,8 @@
                     style="width: 100%;">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary"
-            style="margin-left: 50%; -ms-transform: translate(-50%, 0%); transform: translate(-50%, 0%); margin-bottom: 20px;">Create
-            new Group</button>
-    </form>
-    <hr>
-    {% endblock %}
+    </div>
+    <button type="submit" class="btn btn-primary">Create new Group</button>
+</form>
+<hr>
+{% endblock %}

@@ -20,22 +20,21 @@
         }
 
         nav {
-            background-color: #fff;
+            background-color: #28a745;
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
         }
 
         nav a {
             text-decoration: none;
-            color: #3498db;
+            color: #ffffff;
         }
 
-        nav a:hover {
-            color: #2980b9;
-        }
-
-        h1,
-        p {
+        h1,p {
             margin: 10px;
             padding: 10px;
             background-color: #fff;
@@ -48,13 +47,13 @@
 <body>
     <nav>
         <div>
-            <div style="text-align: left;">
+            <div>
                 <a href="{% url 'recipes:view_all_recipes' %}">Back</a>
             </div>
         </div>
     </nav>
 
-    <h1>{{ recipe.recipe_title }}</h1>
+    <h1 style="margin-top: 50px;">{{ recipe.recipe_title }}</h1>
     <p>Preparation: {{ recipe.preparation|linebreaksbr }}</p>
     <p>Prep Time: {{ recipe.prep_time }}</p>
     <p>Serves: {{ recipe.serves_num }}</p>
