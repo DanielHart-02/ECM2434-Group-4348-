@@ -4,66 +4,69 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static '/css/general.css' %}">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        background-color: #ffffff;
-        padding: 20px;
-        opacity: 0.95;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+<head>
+    <title>Foodle | Create Recipe</title>
+    <link rel="stylesheet" href="{% static '/css/general.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .form-group {
-        margin-bottom: 15px;
-    }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            opacity: 0.95;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .form-select,
-    .form-control {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-    #button-add {
-        border: 1px solid #28a745;
-        color: #28a745;
-        padding: 10px;
-        cursor: pointer;
-    }
+        .form-select,
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
 
-    #button-add:hover {
-        background-color: #28a745;
-        color: #fff;
-    }
+        #button-add {
+            border: 1px solid #28a745;
+            color: #28a745;
+            padding: 10px;
+            cursor: pointer;
+        }
 
-    .btn-success {
-        background-color: #28a745;
-        color: #fff;
-    }
+        #button-add:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
 
-    .btn-success:hover {
-        background-color: #218838;
-    }
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+        }
 
-    hr {
-        margin-top: 0;
-        border: 1px solid #ddd;
-    }
+        .btn-success:hover {
+            background-color: #218838;
+        }
 
-</style>
+        hr {
+            margin-top: 0;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
 
 <div class="container">
     <form method="POST" novalidate>
@@ -90,9 +93,9 @@
 
                     <!-- add all ingredients in  database to a dropdown -->
                     {% if ingredient_ratings %}
-                        {% for rating in ingredient_ratings %}
-                            <option value="{{ rating.ingredient }}">{{ rating.ingredient }}</option>
-                        {% endfor %}
+                    {% for rating in ingredient_ratings %}
+                    <option value="{{ rating.ingredient }}">{{ rating.ingredient }}</option>
+                    {% endfor %}
                     {% endif %}
                 </select>
             </div>
@@ -107,7 +110,8 @@
             </div>
             <!-- Button for moving user inputted ingredients to hidden ingredient/quantity inputs -->
             <div class="form-group col-md-3">
-                <div id="button-add" class="btn btn-outline-success" style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Add Ingredient</div>
+                <div id="button-add" class="btn btn-outline-success"
+                    style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Add Ingredient</div>
             </div>
         </div>
         <br>
@@ -119,7 +123,8 @@
         <div id="Ingredient-container">
         </div>
 
-        <button type="submit" class="btn btn-success" style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Upload Recipe</button>
+        <button type="submit" class="btn btn-success"
+            style="margin-left: 50%; transform: translateX(-50%); width: 80%;">Upload Recipe</button>
     </form>
 </div>
 
@@ -165,7 +170,7 @@
             }
             // add ingredient to hidden form input
             document.getElementById('id_quantities').value += IngredientAmount.value;
-            
+
             // add other ingredient to user list of all added ingredients
             document.getElementById("Ingredient-container").appendChild(newIngredient);
         }
