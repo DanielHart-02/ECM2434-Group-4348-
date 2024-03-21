@@ -1,4 +1,7 @@
 """
+Author: Jamie Elder
+Defines how to render all pages of the website
+
 URL configuration for ecm2434_coursework project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:

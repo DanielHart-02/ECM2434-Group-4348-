@@ -1,3 +1,5 @@
+<!-- Author: Jamie Elder, Victor Smith -->
+<!-- Styling: Victor Smith -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,6 +59,7 @@
     <p>Prep Time: {{ recipe.prep_time }}</p>
     <p>Serves: {{ recipe.serves_num }}</p>
     <p>User:
+        <!-- Display "User Deleted" if user no linger exists -->
         {% if recipe.user == None %}
         User Deleted
         {% else %}

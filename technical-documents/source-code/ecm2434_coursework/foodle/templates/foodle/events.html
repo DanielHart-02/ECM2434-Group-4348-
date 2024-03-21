@@ -1,10 +1,14 @@
+<!-- Author: Jamie Elder -->
+<!-- Styling: Victor Smith, Dylan Carter -->
+<!-- Page for viewing group cooking events -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooking Events</title>
+    <title>Foodle | Cooking Events</title>
     {% load static %}
     <link rel="stylesheet" href="{% static '/css/general.css' %}">
     <style>
@@ -90,6 +94,8 @@
         </tr>
         {% endfor %}
     </table>
+
+    <!-- if cooking events is false then group has no cooking events -->
     {% else %}
     <p>Your group currently has no cooking events</p>
     {% endif %}

@@ -1,3 +1,5 @@
+<!-- Author: Victor Smith, Jamie Elder -->
+<!-- Styling: Victor Smith -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,12 +87,14 @@
                 <td><a href="{% url 'recipes:view_recipe' recipe_id=recipe.pk %}">{{ recipe.recipe_title }}</a></td>
                 <td style="text-align: center;">{{ recipe.prep_time }}</td>
                 <td style="text-align: center;">{{ recipe.serves_num }}</td>
+                <!-- Display allergens or leave column empty -->
                 <td>{% if recipe.allergens == None %}
 
                     {% else %}
                     {{ recipe.allergens }}
                     {% endif %}
                 </td>
+                <!-- Display user or replace with "User Deleted" if user does not exist -->
                 <td>
                     {% if recipe.user == None %}
                     User Deleted

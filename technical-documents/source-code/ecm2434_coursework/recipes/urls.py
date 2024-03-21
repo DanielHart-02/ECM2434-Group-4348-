@@ -1,3 +1,8 @@
+"""
+Author: Jamie Elder
+Defines how to render all pages starting with /recipes/
+"""
+
 from django.urls import path
 
 from . import views

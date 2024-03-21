@@ -1,9 +1,12 @@
+<!-- Author: Jamie Elder -->
+<!-- Styling: Victor Smith -->
+<!-- The Foodle game page with points display and a button for caching points -->
 {% extends 'foodle/index.html' %}
 {% block content %}
 <html>
 
 <head>
-  <title>foodle</title>
+  <title>Foodle | Play Foodle</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
   {% load static %}
@@ -17,10 +20,10 @@
   <br />
   <div id="board"></div>
   <p id="points">Points: 0</p>
-  <!-- Add this line for displaying points -->
-  <button id = "submit_score">Submit and Return</button>
+  <button id="submit_score">Submit and Return</button>
+  <!-- header for displaying the foodle answers - initially hidden with a filler to maintain height of element -->
   <h1 id="answer" style="visibility: hidden;"> FILLER </h1>
-  
+
   <form id="score_form" style="display: none;" action="" method="POST">
     {% csrf_token %}
     <input type="hidden" id="score_field" step="0" required name="score">

@@ -1,67 +1,76 @@
+<!-- Author: Jamie Elder -->
+<!-- Styling: Victor Smith, Dylan Carter -->
+<!-- Leaderboard displaying top 100 users by combined score -->
+
 {% extends 'foodle/index.html' %}
 
 {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static '/css/general.css' %}">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+<head>
+    <title>Foodel | Leaderboard</title>
+    <link rel="stylesheet" href="{% static '/css/general.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    th, td {
-        border: 1px solid #ffffff;
-        opacity: 1;
-        padding: 10px;
-        text-align: left;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    th {
-        background-color: #149a57;
-        color: #fff;
-    }
+        th,
+        td {
+            border: 1px solid #ffffff;
+            opacity: 1;
+            padding: 10px;
+            text-align: left;
+        }
 
-    tr:nth-child(odd) {
-        background-color: #ffffff;
-        opacity: 0.95;
-        font-weight: bold;
-    }
+        th {
+            background-color: #149a57;
+            color: #fff;
+        }
 
-    tr:nth-child(even) {
-        background-color: #949292;
-        opacity: 0.95;
-        font-weight: bold;
-    }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+            opacity: 0.95;
+            font-weight: bold;
+        }
 
-    p {
-        margin-top: 20px;
-    }
-</style>
+        tr:nth-child(even) {
+            background-color: #949292;
+            opacity: 0.95;
+            font-weight: bold;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
 
 {% if top_100_profiles %}
-    <table>
-        <tr>
-            <th>Username</th>
-            <th>Score</th>
-        </tr>
-        {% for profile in top_100_profiles %}
-        <tr>
-            <td>{{ profile.user.username }}</td>
-            <td>{{ profile.foodle_score|add:profile.env_score }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Score</th>
+    </tr>
+    {% for profile in top_100_profiles %}
+    <tr>
+        <td>{{ profile.user.username }}</td>
+        <td>{{ profile.foodle_score|add:profile.env_score }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% else %}
-    <p>No users currently available</p>
+<p>No users currently available</p>
 {% endif %}
 {% endblock content %}

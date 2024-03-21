@@ -1,3 +1,9 @@
+"""
+Author: Jamie Elder
+
+Define how all links starting with /foodle/ are handled
+"""
+
 from django.urls import path
 
 from . import views

@@ -1,4 +1,6 @@
-# views.py
+"""
+Author: Jamie Elder
+"""
 from django.shortcuts import redirect
 
 def redirect_home(request):

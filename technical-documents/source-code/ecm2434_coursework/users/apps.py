@@ -1,3 +1,7 @@
+"""
+Author: Jamie Elder
+"""
+
 from django.apps import AppConfig
 
 

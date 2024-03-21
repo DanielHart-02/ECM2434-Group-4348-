@@ -1,3 +1,8 @@
+/**
+ * @author Dylan Carter, Jamie Elder
+ * @reference https://github.com/froeg/wordle-unlimited.github.io
+ */
+
 var height = 6; //number of guesses
 var width = 5; //length of the word
 
@@ -6,7 +11,7 @@ var col = 0; //current letter for that attempt
 
 var points = 0; // New variable for points
 var gameOver = false;
-var wordList = ["pizza","basil","apple","bacon","bagel","chips","cocoa","clove","sugar","squid","beans","bread","dairy","syrup","toast","olive","pasta","mango","melon"]
+var wordList = ["pizza","basil","apple","bacon","bagel","chips","cocoa","clove","sugar","squid","beans","bread","dairy","syrup","toast","olive","pasta","mango","melon"] // All possible Foodle words
 
 var guessList = ["aahed", "aalii",]
 
@@ -44,6 +49,7 @@ function initialize() {
         ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫"]
     ];
 
+    // Display key inputs on game board
     for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
         let keyboardRow = document.createElement("div");
@@ -203,31 +209,4 @@ function update() {
 function clearCurrentRow() {
     row += 1;
     col = 0;
-}
-
-function restartGame() {
-    row = 0;
-    col = 0;
-    gameOver = false;
-    word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
-
-    for (let r = 0; r < height; r++) {
-        for (let c = 0; c < width; c++) {
-            let currTile = document.getElementById(r.toString() + '-' + c.toString());
-            currTile.innerText = "";
-            currTile.classList.remove("correct", "present", "absent");
-        }
-    }
-
-    document.getElementById("answer").innerText = "";
-    clearKeyboardStyling();
-
-    console.log(word);
-}
-
-function clearKeyboardStyling() {
-    let keyboardKeys = document.querySelectorAll(".key-tile, .enter-key-tile");
-    keyboardKeys.forEach((keyTile) => {
-        keyTile.classList.remove("correct", "absent", "present");
-    });
 }
