@@ -11,12 +11,7 @@ To run the Foodle web app:
    
    $ cd ecm2434_coursework/
 
-4. Create a file named .env with the contents:
-   
-   EMAIL_USER = 'foodle.devteam@gmail.com'
-   EMAIL_PASSWORD = '<Password provided in client docs>'
-
-5. Start the web server with the command:
+4. Start the web server with the command:
 
     $ python3 manage.py runserver
 
